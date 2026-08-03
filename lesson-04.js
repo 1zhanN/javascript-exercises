@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 // Lesson 04 exercise: Operators and conditionals
 // In your exercise repository, create a branch named `lesson-04-exercise` and switch to it,
@@ -12,29 +12,51 @@
 // misses, leaving both the prediction and the actual result visible.
 
 // * The provided expressions, write your prediction beside each before running:
-console.log(3 === "3"); // prediction:
-console.log(3 == "3"); // prediction:
-console.log("5" - 1); // prediction:
-console.log("5" + 1); // prediction:
-console.log(1 + true); // prediction:
-console.log(10 >= 10); // prediction:
-console.log(!(5 > 2)); // prediction:
-console.log(4 !== "4"); // prediction:
-console.log("b" > "a"); // prediction:
-console.log(0 === -0); // prediction:
-
+console.log(3 === "3"); // prediction: false  Actual: false
+console.log(3 == "3"); // prediction: true    Actual: true
+console.log("5" - 1); // prediction: 4        Actual: 4
+console.log("5" + 1); // prediction: 51       Actual: 51
+console.log(1 + true); // prediction: 2       Actual: 2
+console.log(10 >= 10); // prediction: true    Actual: true
+console.log(!(5 > 2)); // prediction: false   Actual: false
+console.log(4 !== "4"); // prediction: true   Actual: true
+console.log("b" > "a"); // prediction: NaN    Actual: true
+console.log(0 === -0); // prediction: true    Actual: true
 
 // TODO: Part two.
 // Write one `if` statement with an `else` branch on a variable of your choosing. Run the file
 // twice with different values so that each branch has printed at least once, and record each
 // run's output in a comment.
 
+let isRaining = true; // Change to false for the second run
+
+if (isRaining) {
+  console.log("Bring an umbrella!");
+} else {
+  console.log("Enjoy the sunshine!");
+}
+
+/*
+ * Run 1 Output (when `isRaining = true`):
+ * Bring an umbrella!
+ *
+ * Run 2 Output (when `isRaining = false`):
+ * Enjoy the sunshine!
+ */
 
 // TODO: Part three.
 // Build an `else if` chain for order pricing: more than 12 items produces one message, more
 // than 6 another, and everything else a third. Run it with values that reach every branch, and
 // add a comment explaining why the most specific question must be asked first.
 
+let itemCount = 10; // Change to test different branches
+if (itemCount > 12) {
+  console.log("Bulk order discount applied!");
+} else if (itemCount > 6) {
+  console.log("Standard order pricing applied.");
+} else {
+  console.log("Small order pricing (no discount).");
+}
 
 // TODO: Part four.
 // For each of the eight provided values, which include `0`, `"0"`, an empty string, and a
@@ -43,7 +65,23 @@ console.log(0 === -0); // prediction:
 
 // * The eight provided values:
 const courtValues = [false, 0, "0", "", " ", "bread", null, undefined];
+// Predictions:
+// false: falsy
+// 0: falsy
+// "0": truthy
+// "": falsy
+// " ": truthy
+// "bread": truthy
+// null: falsy
+// undefined: falsy
 
+console.log(Boolean(0));
+console.log(Boolean("0"));
+console.log(Boolean(""));
+console.log(Boolean(" "));
+console.log(Boolean("bread"));
+console.log(Boolean(null));
+console.log(Boolean(undefined));
 
 // TODO: Part five.
 // Rewrite the provided day-based `if` chain as a `switch` statement with a `default` case and
@@ -51,16 +89,19 @@ const courtValues = [false, 0, "0", "", " ", "bread", null, undefined];
 
 // * The provided day-based if chain, rewrite it as a switch beneath it:
 const day = "Sunday";
-if (day === "Saturday") {
-  console.log("Open 7:00 to 14:00");
-} else if (day === "Sunday") {
-  console.log("Open 8:00 to 12:00");
-} else if (day === "Monday") {
-  console.log("Closed today");
-} else {
-  console.log("Open 7:00 to 18:00");
+switch (day) {
+  case "Saturday":
+    console.log("Open 7:00 to 14:00");
+    break;
+  case "Sunday":
+    console.log("Open 8:00 to 12:00");
+    break;
+  case "Monday":
+    console.log("Closed today");
+    break;
+  default:
+    console.log("Open 7:00 to 18:00");
 }
-
 
 // TODO: Part six.
 // The file ends with a short broken program that contains an assignment where a comparison was
@@ -69,15 +110,17 @@ if (day === "Saturday") {
 
 // * The provided broken program, run it, observe both incorrect behaviors, then repair both:
 let shopStatus = "closed";
-if (shopStatus = "open") {
+if (shopStatus === "open") {
   console.log("Welcome in");
 }
 const size = "M";
 switch (size) {
   case "S":
     console.log("Small");
+    break;
   case "M":
     console.log("Medium");
+    break;
   case "L":
     console.log("Large");
     break;
@@ -85,6 +128,7 @@ switch (size) {
     console.log("Unknown size");
 }
 
+// Repaired assignment `=` to comparison `===` in the if statement, and added a missing `break` to the "M" case to prevent switch fall-through.
 
 // TODO: Part seven.
 // Two classic exercises close the lesson. First, the leap year checker: a year is a leap year
@@ -94,6 +138,27 @@ switch (size) {
 // divisible by 3, Buzz when it is divisible by 5, FizzBuzz when it is divisible by both, and
 // the number itself otherwise. The loops lesson scales this to one hundred.
 
+// first exercise: leap year checker
+
+let year = 1900; // Change to test different years
+if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+  console.log(`${year} is a leap year.`);
+} else {
+  console.log(`${year} is not a leap year.`);
+}
+
+// second exercise: FizzBuzz for a single number
+
+let number = 12;
+if (number % 3 === 0 && number % 5 === 0) {
+  console.log("FizzBuzz");
+} else if (number % 3 === 0) {
+  console.log("Fizz");
+} else if (number % 5 === 0) {
+  console.log("Buzz");
+} else {
+  console.log(number);
+}
 
 // TODO: Save deliberately, commit with a clear message, push the branch, and open a pull request
 // into main.
